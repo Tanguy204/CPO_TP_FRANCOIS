@@ -25,8 +25,9 @@ public class TP1_convertisseur_FRANCOIS {
         System.out.println(" 5) KelvinVersFarenheint ");
         System.out.println( " 6) FarenheintVersKelvin ");
         int cx = sc.nextInt();
-        double T2 = (1.0);
-        double T1 =( 2.0);
+        double T2 = 0 ;
+        double T1 ;
+        
         if (cx==1){
             T2 = CelciusVersKelvin(T);
         }
@@ -44,11 +45,11 @@ public class TP1_convertisseur_FRANCOIS {
             T1=KelvinVersCelsius(T);
             T2=CelsiusVersFarenheint(T1);
         }  
-        if (cx!=6) {
-            T1 =FarenheintVersCelsius(T);
-            T2=CelsiusVersKelvin(T1);
+        if (cx==6) {
+            T1 =FarenheitVersCelsius(T);
+            T2=CelciusVersKelvin(T1);
         }  
-        System.out.println("aprés conversion la température est : " + T2);
+        System.out.println("aprés conversion la température est de : " + T2);
             
         }
         
