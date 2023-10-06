@@ -15,11 +15,12 @@ public class Convertisseur {
     }
     @Override
         public String toString () {
-        return "nb de conversions"+ nbConversions;
+        return "nb de conversions "+ nbConversions;
     }
     
     public static double CelciusVersKelvin(double tC){
          double TK= tC+273.15;
+         
         return TK;
          }
      public static double KelvinVersCelsius(double tC){
@@ -34,14 +35,7 @@ public class Convertisseur {
          double TK= (tC-32)/1.8 ;
         return TK;
          }
-     public static double FarenheitVersKelvin(double tC){
-         double TK= (tC + 459.67) / 1.8 ;
-         return TK;
-     }
-     public static double KelvinVersFarenheit(double tC){
-         double TK=(tC * 1.8) - 459.67;
-         return TK ;
-     }
+     
     }
     
 
