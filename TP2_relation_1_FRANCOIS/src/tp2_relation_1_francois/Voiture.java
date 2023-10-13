@@ -12,10 +12,12 @@ public class Voiture {
     String Modele ;
     String Marque ;
     int PuissanceCV ;
+    Personne proprietaire ;
     public Voiture( String M, String MQ , int P){
         Modele=M;
         Marque=MQ;
         PuissanceCV=P;
+        proprietaire = null ;
     }
     @Override
     public String toString() {

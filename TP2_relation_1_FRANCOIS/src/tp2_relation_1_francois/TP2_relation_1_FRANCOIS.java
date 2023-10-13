@@ -22,6 +22,15 @@ public class TP2_relation_1_FRANCOIS {
         Personne reno = new Personne("Reno", "Raines");
         System.out.println("liste des voitures disponibles "+ uneClio +
         "\n" + uneAutreClio + "\n" + une2008 + "\n" + uneMicra ) ;
+        
+        bob.ajouter_voiture(uneMicra);
+        bob.ajouter_voiture(uneClio);
+        bob.ajouter_voiture(une2008);
+        System.out.println("la premiere voiture de Bob est " + bob.liste_voitures[0] ) ;
+        System.out.println("la deuxième voiture de Bob est " + bob.liste_voitures[1] ) ;
+        System.out.println("la 3eme voiture de bob est " + bob.liste_voitures[2] ) ;
+        
+        
     }
     
 }
