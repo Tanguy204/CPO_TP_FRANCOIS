@@ -38,7 +38,10 @@ public final class GrilleDeJeu {
     }
 
     public void activerLigneColonneOuDiagonaleAleatoire() {
-        int Qdiag = random.nextInt(Math.abs(nbColonnes-nbLignes));
+        int Qdiag=0;
+        if (nbColonnes>nbLignes){
+         Qdiag = random.nextInt(Math.abs(nbColonnes-nbLignes));
+        }
         int compt = random.nextInt(4);
         int qligne = random.nextInt(nbLignes);
         int qcolonne = random.nextInt(nbColonnes);
@@ -97,26 +100,26 @@ public void genererMatriceAleatoire(int nbTours){
         
     }
     public void activerLigneDeCellules(int idLigne){
-        for (int colonne = 0; colonne <= nbColonnes; colonne++) {
+        for (int colonne = 0; colonne < nbColonnes; colonne++) {
                 matriceCellules[idLigne][colonne].activerCellule();
     }
     
     }
     public void activerColonneDeCellules(int idColonne){
-        for (int ligne = 0; ligne <= nbLignes; ligne++) {
+        for (int ligne = 0; ligne < nbLignes; ligne++) {
                 matriceCellules[ligne][idColonne].activerCellule();
     }
         
 }
-    public void activerDiagonaleDescendante() {
-        for (int colonne = 0; colonne <= nbColonnes; colonne++) {
-                        matriceCellules[colonne][colonne].activerCellule();
+    public void activerDiagonaleDescendante(int x, int y) {
+        for (int colonne = 0; colonne < nbColonnes; colonne++) {
+                        matriceCellules[colonne+x][colonne+y].activerCellule();
         }
         
     }
-    public void activerDiagonaleMontante() {
+    public void activerDiagonaleMontante(int x, int y) {
         for (int colonne = nbColonnes; colonne >= 0; colonne--) {
-                        matriceCellules[colonne][nbColonnes-colonne].activerCellule();
+                        matriceCellules[colonne+x][nbColonnes-colonne+y].activerCellule();
                     }
         
     }
@@ -124,37 +127,49 @@ public void genererMatriceAleatoire(int nbTours){
         boolean check = false;
         int ligne = 0;
         int colonne = 0;
-        while (check==false && ligne<=nbLignes && colonne<=nbColonnes){
-            while (check==false && ligne<=nbLignes && colonne<=nbColonnes){
+        int compt=0;
+        while (check==false && ligne<nbLignes && colonne<nbColonnes){
+            while (check==false && ligne<nbLignes && colonne<nbColonnes){
                 
                 check = matriceCellules[ligne][colonne].getEtat() ;
-                ligne+=1;
+                colonne+=1;
+                compt+=1;
             }
-            ligne=1;
-            colonne+=1;
+           
+            
+             ligne+=1;
+        if (colonne !=nbColonnes){
+            return false ;
+           
+        
         }
-        if (colonne ==nbColonnes+1){
-            return true ;
-        } else {
+        colonne=0;
+        }
+        if (compt==nbLignes*nbColonnes  ){
+            return true;
+            
+        }else {
             return false;
         }
+        
     }
     @Override
 public String toString() {
         String grille ="   |";
+        String lignedetiret = "----";
         for (int i = 1; i<=nbColonnes; i++){
             grille+=(" "+i+" |");
+            lignedetiret+="----";
         }
-        grille+="\n";
+        grille+="\n"+lignedetiret+"\n";
         
         for (int ligne = 0; ligne < nbLignes; ligne++) {
             grille+=(" "+(ligne+1)+" |");
         
             for (int colonne = 0; colonne < nbColonnes; colonne++) {
-                
                 grille +=(" "+matriceCellules[ligne][colonne]+" |");
             }
-            grille+="\n";
+            grille += "\n"+lignedetiret+"\n";
         }
         
         
