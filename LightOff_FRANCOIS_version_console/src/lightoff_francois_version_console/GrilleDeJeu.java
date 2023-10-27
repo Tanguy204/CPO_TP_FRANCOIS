@@ -112,15 +112,38 @@ public void genererMatriceAleatoire(int nbTours){
         
 }
     public void activerDiagonaleDescendante(int x, int y) {
-        for (int colonne = 0; colonne < nbColonnes; colonne++) {
+        int i=nbColonnes;
+        if (nbColonnes<nbLignes){
+            i=nbColonnes;
+        }
+        if (nbColonnes>nbLignes){
+            i=nbLignes;
+        }
+        for (int colonne = 0; colonne < i; colonne++) {
                         matriceCellules[colonne+x][colonne+y].activerCellule();
         }
         
     }
     public void activerDiagonaleMontante(int x, int y) {
-        for (int colonne = nbColonnes; colonne >= 0; colonne--) {
-                        matriceCellules[colonne+x][nbColonnes-colonne+y].activerCellule();
-                    }
+        int i=nbColonnes;
+        if (nbColonnes<nbLignes){
+            i=nbColonnes-1;
+        }
+        if (nbColonnes>nbLignes){
+            i=nbLignes-1;
+        }
+        x = Math.abs(i-x);
+        y = Math.abs(i-y);
+        
+        for (int colonne = i ; colonne >= 0; colonne--) {
+                    int ligne;
+                           ligne = i-colonne+y;
+                    int co ;
+                            co=colonne+x-1;
+                    System.out.println("a"+ligne+co);
+                    matriceCellules[co][ligne].activerCellule();
+                
+            }
         
     }
     public boolean cellulesToutesEteintes(){
