@@ -12,23 +12,21 @@ import java.util.Scanner;
  * @author Tanguy
  */
 public class Partie {
-
+    boolean etat;
     GrilleDeJeu grille;
     int nbCoups;
     Scanner scanner = new Scanner(System.in);
-
+    int nbCoupsMax;
     /**
      *Constructeur de la partie. Il initialise une nouvelle grille de jeu selon les dimensions
      * spécifiées par le joueur.
      */
-    public Partie() {
-
-        System.out.println("Combien de colonnes voulez vous sur votre grille ?");
-        int y = scanner.nextInt();
-        System.out.println("Combien de lignes voulez vous sur votre grille ?");
-        int x = scanner.nextInt();
+    public Partie(int x , int y, int z) {
+        
         grille = new GrilleDeJeu(x, y);
         nbCoups = 0;
+        etat = false;
+        nbCoupsMax=z;
 
     }
 
@@ -51,15 +49,18 @@ public class Partie {
      */
     public void lancerPartie() {
         initialiserPartie();
-        
-        while (grille.cellulesToutesEteintes() == false) {
-            System.out.println(grille);
+        System.out.println(grille);
+        while (grille.cellulesToutesEteintes() == false && nbCoups!=nbCoupsMax) {
+            
             
             System.out.println("Si vous voulez switcher un ligne taper 1, si vous voulez switcher une colonnes taper 2, ou une diagonale taper 3");
             int LoCoD = scanner.nextInt();
+            
             if (LoCoD == 1 || LoCoD == 2) {
+                
                 System.out.println("Quelle colonne ou ligne voulez vous switcher ?");
                 int cx = scanner.nextInt() - 1;
+                
                 if (LoCoD == 1) {
                     grille.activerLigneDeCellules(cx);
                 } else {
@@ -93,10 +94,21 @@ public class Partie {
                 } else {
                     grille.activerDiagonaleMontante(diagx, diagy );
                 }
-                nbCoups += 1;
-
-            }
+                
+ }
+          nbCoups += 1;
+          System.out.println(grille);
+          
+          }      
+        
+        if (nbCoups<=nbCoupsMax && grille.cellulesToutesEteintes() == true){
+            System.out.println("Bravo Vous avez gagné au bout de " + nbCoups);
+            etat=true;
+        if (nbCoups> nbCoupsMax && grille.cellulesToutesEteintes() == false){
+              System.out.println("vous avez perdu, recomencez");
+                
         }
-        System.out.println("Bravo Vous avez gagné");
+        
     }
+}
 }
