@@ -4,7 +4,7 @@
  */
 package lightoff_francois_version_console;
 
-import java.util.ArrayList;
+
 import java.util.Random;
 
 /**
@@ -21,11 +21,11 @@ public class ModeNiveaux {
 
     public ModeNiveaux() {
 
-        nbCoups = 2;
+        nbCoups = 3;
         Niveaux = new Partie[20][3];
 
-        x = 2;
-        y = 2;
+        x = 3;
+        y = 3;
     }
 
     public void LancerNiveaux() {
@@ -42,9 +42,9 @@ public class ModeNiveaux {
             Niveaux[i][0].initialiserPartie();
             sauv = new GrilleDeJeu(x,y);
             sauv.copierGrille(Niveaux[i][0].grille);
-            System.out.println(sauv);
+
             while (Niveaux[i][0].lancerPartie() == false) {
-                System.out.println("recommencez le niveau"+sauv);
+                System.out.println("recommencez le niveau");
                 
                 Niveaux[i][0].grille .copierGrille(sauv);
                 Niveaux[i][0].nbCoups = 0;
@@ -54,7 +54,7 @@ public class ModeNiveaux {
             System.out.println("Vous devez réaliser ces grilles en moins de " + nbCoups + " coups");
             Niveaux[i][1] = new Partie(x, nbC, nbCoups);
             Niveaux[i][1].initialiserPartie();
-            sauv1 = new GrilleDeJeu(x,y);
+            sauv1 = new GrilleDeJeu(x,nbC);
             sauv.copierGrille(Niveaux[i][1].grille);
                     
 
@@ -66,9 +66,10 @@ public class ModeNiveaux {
             }
 
             nbL = random.nextInt(x) + 1;
+            System.out.println("Vous devez réaliser ces grilles en moins de " + nbCoups + " coups");
             Niveaux[i][2] = new Partie(nbL, y, nbCoups);
             Niveaux[i][2].initialiserPartie();
-            sauv2 = new GrilleDeJeu(x,y);
+            sauv2 = new GrilleDeJeu(nbL,y);
             sauv.copierGrille(Niveaux[i][2].grille);
             
             while (Niveaux[i][2].lancerPartie() == false) {
@@ -82,9 +83,11 @@ public class ModeNiveaux {
             y += 1;
             nbCoups = (x * y) / 2;
 
-            System.out.println(sauv2 + " " + sauv+ " " + sauv1);
+            
 
             System.out.println("Niveau " + (i + 1) + " passé");
         }
+        System.out.println("Bravo vous avez passer tous les niveaux");
     }
+    
 }
