@@ -14,37 +14,21 @@ import javax.swing.JButton;
  */
 public class CelluleGraphique extends JButton {
 
+    int largeur; // largeur en pixel de la cellule
+    int hauteur; // hauteur en pixel de la cellule
     CelluleLumineuse celluleLumineuseAssociee;
-    int largeur;
-    int longueur;
-    int ligne;
-    int colonne;
+// constructeur (appelé depuis FenetrePrincipale)
 
-    public CelluleGraphique(int lar, int longu, CelluleLumineuse cel,int li, int co) {
-        celluleLumineuseAssociee = cel;
-        largeur = lar;
-        longueur = longu;
-        ligne=li;
-        colonne=co;
-        
+    public CelluleGraphique(CelluleLumineuse celluleLumineuseAssociee, int l, int h) {
+        this.largeur = l;
+        this.hauteur = h;
+        this.celluleLumineuseAssociee = celluleLumineuseAssociee;
     }
-    public int getLigne() {
-        return ligne;
-    }
-
-    public int getColonne() {
-        return colonne;
-    }
+// Methode gérant le dessin de la cellule
 
     @Override
     protected void paintComponent(Graphics g) {
-        //super.paintComponent(g);
-        //this.setText(celluleLumineuseAssociee.toString());
-        if (celluleLumineuseAssociee.estEteint()) {
-            g.setColor(Color.red);
-        }
-        g.fillOval(0, 0, 30 , 30);
+        super.paintComponent(g);
+        this.setText(celluleLumineuseAssociee.toString());
     }
 }
-
-
